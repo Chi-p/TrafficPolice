@@ -2,13 +2,10 @@
 
 namespace TraficPoliceLib
 {
-    public class GeoAreaClass
+    public class GeoArea
     {
-        public class GeoArea
-        {
-            public string CodeInterval { get; set; }
-            public string Name { get; set; }
-        }
+        public string CodeInterval { get; set; }
+        public string Name { get; set; }
 
         public static List<GeoArea> GeoAreaList = new List<GeoArea>
         {
