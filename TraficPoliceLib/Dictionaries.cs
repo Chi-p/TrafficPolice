@@ -2,7 +2,7 @@
 
 namespace TraficPoliceLib
 {
-    class DictionaryClass
+    class Dictionaries
     {
         /// <summary>
         /// Словарь с цифровыми эквивалентами символов VIN номера
@@ -38,9 +38,6 @@ namespace TraficPoliceLib
         /// </summary>
         public static Dictionary<char, int> ModelYearDict = new Dictionary<char, int>
         {
-            ['U'] = 0,
-            ['Z'] = 0,
-            ['0'] = 0,
             ['N'] = 1992,
             ['P'] = 1993,
             ['R'] = 1994,

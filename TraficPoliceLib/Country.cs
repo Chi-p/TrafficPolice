@@ -14,7 +14,7 @@ namespace TraficPoliceLib
 
         public static List<Country> CountriesList = new List<Country>
         {
-            #region African countries
+            #region Африканские страны
             new Country { CodeInterval = "A-H", GeoAreaCode = 'A', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Африка"), IsActive = true, Name = "ЮАР" },
             new Country { CodeInterval = "J-N", GeoAreaCode = 'A', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Африка"), IsActive = true, Name = "Кот-д'Ивуар" },
             new Country { CodeInterval = "P-0", GeoAreaCode = 'A', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Африка"), IsActive = false, Name = "Не используется" },
@@ -39,7 +39,7 @@ namespace TraficPoliceLib
             new Country { CodeInterval = "A-0", GeoAreaCode = 'G', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Африка"), IsActive = false, Name = "Не используется" },
             new Country { CodeInterval = "A-0", GeoAreaCode = 'H', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Африка"), IsActive = false, Name = "Не используется" },
             #endregion
-            #region Asian countries
+            #region Азиатские страны
             new Country { CodeInterval = "A-T", GeoAreaCode = 'J', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Азия"), IsActive = true, Name = "Япония" },
             new Country { CodeInterval = "A-E", GeoAreaCode = 'K', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Азия"), IsActive = true, Name = "Шри Ланка" },
             new Country { CodeInterval = "F-K", GeoAreaCode = 'K', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Азия"), IsActive = true, Name = "Израиль" },
@@ -62,7 +62,7 @@ namespace TraficPoliceLib
             new Country { CodeInterval = "L-R", GeoAreaCode = 'R', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Азия"), IsActive = true, Name = "Вьетнам" },
             new Country { CodeInterval = "S-0", GeoAreaCode = 'R', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Азия"), IsActive = true, Name = "Саудовская Аравия" },
             #endregion
-            #region European countries
+            #region Европейские страны
             new Country { CodeInterval = "A-M", GeoAreaCode = 'S', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Европа"), IsActive = true, Name = "Великобритания" },
             new Country { CodeInterval = "N-T", GeoAreaCode = 'S', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Европа"), IsActive = true, Name = "Германия" },
             new Country { CodeInterval = "U-Z", GeoAreaCode = 'S', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Европа"), IsActive = true, Name = "Польша" },
@@ -105,7 +105,7 @@ namespace TraficPoliceLib
             new Country { CodeInterval = "3-5", GeoAreaCode = 'Z', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Европа"), IsActive = true, Name = "Литва" },
             new Country { CodeInterval = "6-0", GeoAreaCode = 'Z', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Европа"), IsActive = true, Name = "Россия" },
             #endregion
-            #region North American countries
+            #region Северо-Американские страны
             new Country { CodeInterval = "A-0", GeoAreaCode = '1', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Северная Америка"), IsActive = true, Name = "США" },
             new Country { CodeInterval = "A-0", GeoAreaCode = '2', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Северная Америка"), IsActive = true, Name = "Канада" },
             new Country { CodeInterval = "A-W", GeoAreaCode = '3', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Северная Америка"), IsActive = true, Name = "Мексика" },
@@ -114,13 +114,13 @@ namespace TraficPoliceLib
             new Country { CodeInterval = "A-0", GeoAreaCode = '4', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Северная Америка"), IsActive = true, Name = "США" },
             new Country { CodeInterval = "A-0", GeoAreaCode = '5', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Северная Америка"), IsActive = true, Name = "США" },
             #endregion
-            #region Oceania countries
+            #region Страны Океании
             new Country { CodeInterval = "A-W", GeoAreaCode = '6', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Океания"), IsActive = true, Name = "Австралия" },
             new Country { CodeInterval = "X-0", GeoAreaCode = '6', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Океания"), IsActive = false, Name = "Не используется" },
             new Country { CodeInterval = "A-E", GeoAreaCode = '7', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Океания"), IsActive = true, Name = "Новая Зеланидя" },
             new Country { CodeInterval = "F-0", GeoAreaCode = '7', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Океания"), IsActive = false, Name = "Не используется" },
             #endregion
-            #region South American countries
+            #region Южно-Американские страны
             new Country { CodeInterval = "A-E", GeoAreaCode = '8', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Южная Америка"), IsActive = true, Name = "Аргентина" },
             new Country { CodeInterval = "F-K", GeoAreaCode = '8', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Южная Америка"), IsActive = true, Name = "Чили" },
             new Country { CodeInterval = "L-R", GeoAreaCode = '8', GeoArea = GeoAreaList.FirstOrDefault(i=>i.Name=="Южная Америка"), IsActive = true, Name = "Эквадор" },

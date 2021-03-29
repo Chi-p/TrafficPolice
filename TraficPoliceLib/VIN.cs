@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
 using static TraficPoliceLib.Country;
-using static TraficPoliceLib.DictionaryClass;
+using static TraficPoliceLib.Dictionaries;
 
 namespace TraficPoliceLib
 {
     /// <summary>
     /// Класс для проверки VIN номера и получения информации о нём
     /// </summary>
-    public static class VIN_Class
+    public static class VIN
     {
         #region Variables
-        private static readonly string _allowedChars = "ABCDEFGHJKLMNPRSTUVWXYZ0123456789";
+        private static readonly string _allowedChars = "ABCDEFGHJKLMNPRSTUVWXYZ1234567890";
         private static string _vin = "";
         #endregion
 
@@ -21,7 +21,7 @@ namespace TraficPoliceLib
         /// <param name="vin">VIN номер</param>
         /// <returns>true - всё хорошо, false - что-то не так</returns>
         public static bool CheckVIN(string vin)
-        {           
+        {
             _vin = vin.ToUpper();
 
             if (_vin.Length != 17)
@@ -42,7 +42,7 @@ namespace TraficPoliceLib
             if (country == null)
                 return false;
 
-            if (ModelYearDict[_vin[9]] == 0)
+            if (!ModelYearDict.TryGetValue(_vin[9], out _))
                 return false;
 
             if (!char.IsDigit(_vin[13]) || !char.IsDigit(_vin[14]) ||
@@ -64,27 +64,25 @@ namespace TraficPoliceLib
         {
             _vin = vin.ToUpper();
 
-            string result = "";
-
             if (_vin.Length != 17)
-                return result += "Ошибка!\nДлина VIN должна составлять 17 знаков";
+                return "Ошибка!\nДлина VIN должна составлять 17 знаков";
 
             foreach (var @char in _vin)
             {
                 if (!_allowedChars.Contains(@char))
-                    return result += "Ошибка!\nVIN состоит из запрещённых символов";
+                    return "Ошибка!\nVIN состоит из запрещённых символов";
             }
 
             if (_vin[0] == '0')
-                return result += "Ошибка!\nПервый символ не может быть равен 0";
+                return "Ошибка!\nПервый символ не может быть равен 0";
 
             Country country = CountriesList.FirstOrDefault(i => i.GeoAreaCode == _vin[0]
             && i.IsActive == true && ExpandedCode(i.CodeInterval).Contains(_vin[1].ToString()));
 
             if (country == null)
-                return result += "Ошибка!\nНеверный всемирный индекс изготовителя (WMI)";
+                return "Ошибка!\nНеверный всемирный индекс изготовителя (WMI)";
 
-            if (ModelYearDict[_vin[9]] == 0)
+            if (!ModelYearDict.TryGetValue(_vin[9], out _))
                 return "Ошибка!\nНеверный модельный год";
 
             if (!char.IsDigit(_vin[13]) || !char.IsDigit(_vin[14]) ||
@@ -92,10 +90,9 @@ namespace TraficPoliceLib
                 return "Ошибка!\nПоследние 4 знака обязательно должны быть цифрами";
 
             if (_vin[8].ToString() != CalculatingChecksum(_vin))
-                return result += "Ошибка!\nНеверный контрольный символ";
+                return "Ошибка!\nНеверный контрольный символ";
 
-            result += 
-                $"Информация об указанном VIN({ vin}):\n" +
+            return $"Информация об указанном VIN({ vin}):\n" +
                 $"Регион: {country.GeoArea.Name}\n" +
                 $"Страна сборки: {country.Name}\n" +
                 $"Фирма-производитель: неизвестно\n" +
@@ -107,8 +104,6 @@ namespace TraficPoliceLib
                 $"Отделение завода: неизвестно\n" +
                 $"Порядковый номер: неизвестно\n" +
                 $"Контрольный символ: успешно прошёл проверку";
-
-            return result;
         }
 
         /// <summary>

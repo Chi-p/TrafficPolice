@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\TraficPoliceLib.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Country.cs" />
-    <Compile Include="DictionaryClass.cs" />
+    <Compile Include="Dictionaries.cs" />
     <Compile Include="GeoArea.cs" />
-    <Compile Include="VIN_Class.cs" />
+    <Compile Include="Region.cs" />
+    <Compile Include="RegMark.cs" />
+    <Compile Include="VIN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
