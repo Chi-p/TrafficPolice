@@ -5,15 +5,23 @@ using static TraficPoliceLib.DictionaryClass;
 
 namespace TraficPoliceLib
 {
-    public class VIN_Class
+    /// <summary>
+    /// Класс для проверки VIN номера и получения информации о нём
+    /// </summary>
+    public static class VIN_Class
     {
         #region Variables
         private static readonly string _allowedChars = "ABCDEFGHJKLMNPRSTUVWXYZ0123456789";
         private static string _vin = "";
         #endregion
-      
-        public static bool CheckVin(string vin)
-        {
+
+        /// <summary>
+        /// Метод, проверяющий на правильность введённый VIN номер
+        /// </summary>
+        /// <param name="vin">VIN номер</param>
+        /// <returns>true - всё хорошо, false - что-то не так</returns>
+        public static bool CheckVIN(string vin)
+        {           
             _vin = vin.ToUpper();
 
             if (_vin.Length != 17)
@@ -34,6 +42,9 @@ namespace TraficPoliceLib
             if (country == null)
                 return false;
 
+            if (ModelYearDict[_vin[9]] == 0)
+                return false;
+
             if (!char.IsDigit(_vin[13]) || !char.IsDigit(_vin[14]) ||
                 !char.IsDigit(_vin[15]) || !char.IsDigit(_vin[16]))
                 return false;
@@ -41,15 +52,19 @@ namespace TraficPoliceLib
             if (_vin[8].ToString() != CalculatingChecksum(_vin))
                 return false;
 
-
             return true;
         }
 
-        public static string VinInfo(string vin)
+        /// <summary>
+        /// Метод, выводящий полную информацию о введённом VIN номере
+        /// </summary>
+        /// <param name="vin">VIN номер</param>
+        /// <returns>Возвращает результат с ошибкой или с информацией</returns>
+        public static string GetVINInfo(string vin)
         {
             _vin = vin.ToUpper();
 
-            string result = $"Информация о указанном VIN ({vin}):\n";
+            string result = "";
 
             if (_vin.Length != 17)
                 return result += "Ошибка!\nДлина VIN должна составлять 17 знаков";
@@ -68,8 +83,6 @@ namespace TraficPoliceLib
 
             if (country == null)
                 return result += "Ошибка!\nНеверный всемирный индекс изготовителя (WMI)";
-            else if (!country.IsActive)
-                return result += $"Ошибка!\nСимвол '{_vin[1]}' не используется для какой либо страны в регионе \"{country.GeoArea.Name}\"";
 
             if (ModelYearDict[_vin[9]] == 0)
                 return "Ошибка!\nНеверный модельный год";
@@ -81,18 +94,55 @@ namespace TraficPoliceLib
             if (_vin[8].ToString() != CalculatingChecksum(_vin))
                 return result += "Ошибка!\nНеверный контрольный символ";
 
-            result += $"Регион: {country.GeoArea.Name}\nСтрана сборки: {country.Name}\n" +
-                $"Фирма-производитель: неизвестно\nКолесная база: неизвестно\n" +
-                $"Тип кузова: неизвестно\nДвигатель: неизвестно\n" +
-                $"Тип трансмиссии: неизвестно\nГод выпуска: {ModelYearDict[_vin[9]]}\n" +
-                $"Отделение завода: неизвестно\nПорядковый номер: неизвестно\n" +
+            result += 
+                $"Информация об указанном VIN({ vin}):\n" +
+                $"Регион: {country.GeoArea.Name}\n" +
+                $"Страна сборки: {country.Name}\n" +
+                $"Фирма-производитель: неизвестно\n" +
+                $"Колесная база: неизвестно\n" +
+                $"Тип кузова: неизвестно\n" +
+                $"Двигатель: неизвестно\n" +
+                $"Тип трансмиссии: неизвестно\n" +
+                $"Год выпуска: {ModelYearDict[_vin[9]]}\n" +
+                $"Отделение завода: неизвестно\n" +
+                $"Порядковый номер: неизвестно\n" +
                 $"Контрольный символ: успешно прошёл проверку";
 
             return result;
         }
 
+        /// <summary>
+        /// Метод, возвращающий страну, в которой было изготовлено транспортное средство
+        /// </summary>
+        /// <param name="vin">VIN номер</param>
+        /// <returns>Возвращает результат с ошибкой или с названием страны</returns>
+        public static string GetVINCountry(string vin)
+        {
+            var info = GetVINInfo(vin);
+            if (info.Contains("Ошибка!"))
+                return info;
+
+            Country country = CountriesList.FirstOrDefault(i => i.GeoAreaCode == _vin[0]
+            && i.IsActive == true && ExpandedCode(i.CodeInterval).Contains(_vin[1].ToString()));
+
+            return $"Страна производства: {country.Name}";
+        }
+
+        /// <summary>
+        /// Метод, возвращающий год, в который было выпущено транспортное средство
+        /// </summary>
+        /// <param name="vin">VIN номер</param>
+        /// <returns>Возвращает год или '0', если какая-либо ошибка в введённом VIN номере</returns>
+        public static int GetTransportYear(string vin)
+        {
+            if (CheckVIN(vin) == false)
+                return 0;
+
+            return ModelYearDict[_vin[9]];
+        }
+
         #region Methods with calculations
-        public static string ExpandedCode(string codeInterval)
+        private static string ExpandedCode(string codeInterval)
         {
             string result = "";
             string[] codeArray = codeInterval.Split('-');
@@ -120,7 +170,7 @@ namespace TraficPoliceLib
             return result;
         }
 
-        public static string CalculatingChecksum(string vin)
+        private static string CalculatingChecksum(string vin)
         {
             string digitalEquivalent = "";
             int sum = 0;

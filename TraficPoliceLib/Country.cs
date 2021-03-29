@@ -4,7 +4,7 @@ using static TraficPoliceLib.GeoArea;
 
 namespace TraficPoliceLib
 {
-    public class Country
+    class Country
     {
         public string CodeInterval { get; set; }
         public bool IsActive { get; set; }

@@ -2,7 +2,7 @@
 
 namespace TraficPoliceLib
 {
-    public class GeoArea
+    class GeoArea
     {
         public string CodeInterval { get; set; }
         public string Name { get; set; }

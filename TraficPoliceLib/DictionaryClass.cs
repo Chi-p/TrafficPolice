@@ -2,9 +2,11 @@
 
 namespace TraficPoliceLib
 {
-    public class DictionaryClass
+    class DictionaryClass
     {
-
+        /// <summary>
+        /// Словарь с цифровыми эквивалентами символов VIN номера
+        /// </summary>
         public static Dictionary<char, string> DigitalEquivalentDict = new Dictionary<char, string>
         {
             ['A'] = "1",
@@ -31,6 +33,9 @@ namespace TraficPoliceLib
             ['Y'] = "8",
             ['Z'] = "9",
         };
+        /// <summary>
+        /// Словарь с модальными годами VIN номера
+        /// </summary>
         public static Dictionary<char, int> ModelYearDict = new Dictionary<char, int>
         {
             ['U'] = 0,
@@ -67,6 +72,9 @@ namespace TraficPoliceLib
             ['L'] = 2020,
             ['M'] = 2021
         };
+        /// <summary>
+        /// Словарь с весом каждого символа VIN номера
+        /// </summary>
         public static Dictionary<int, int> WeightOfCharactersDict = new Dictionary<int, int>
         {
             [1] = 8,
@@ -86,6 +94,5 @@ namespace TraficPoliceLib
             [15] = 3,
             [16] = 2,
         };
-
     }
 }
