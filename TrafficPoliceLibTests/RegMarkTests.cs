@@ -1,48 +1,48 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TraficPoliceLib;
+using TrafficPoliceLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TraficPoliceLib.Tests
+namespace TrafficPoliceLib.Tests
 {
     [TestClass()]
-    public class VINTests
+    public class RegMarkTests
     {
         [TestMethod()]
-        public void CheckVIN_CorrectVIN_ReturnsTrue()
+        public void CheckMark_CorrectRegMark_ReturnsTrue()
         {
             //Arrange
-            string vin = "KJASHDJK3SKDH1234";
+            string vin = "A000AA46";
             bool expected = true;
             //Act
-            bool actual = VIN.CheckVIN(vin);
+            bool actual = RegMark.CheckMark(vin);
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
-        public void CheckVIN_LessThen17Chars_ReturnsFalse()
+        public void CheckMark_LessThen8Chars_ReturnsFalse()
         {
             //Arrange
-            string vin = "KJASHDJK3SKDH123";
+            string vin = "A000AA4";
             bool expected = false;
             //Act
-            bool actual = VIN.CheckVIN(vin);
+            bool actual = RegMark.CheckMark(vin);
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
-        public void GetVINInfo_CorrectVIN_ReturnsTrue()
+        public void GetMarkInfo_CorrectRegMark_ReturnsTrue()
         {
             //Arrange
-            string vin = "KJASHDJK3SKDH1234";
-            bool expected =true;
+            string vin = "A000AA46";
+            bool expected = true;
             //Act
-            string result = VIN.GetVINInfo(vin);
+            string result = RegMark.GetMarkInfo(vin);
             bool actual = !result.Contains("Ошибка!");
             //Assert
             Assert.AreEqual(expected, actual);

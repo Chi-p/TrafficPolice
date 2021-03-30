@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using static TraficPoliceLib.Country;
-using static TraficPoliceLib.Dictionaries;
+using static TrafficPoliceLib.Country;
+using static TrafficPoliceLib.Dictionaries;
 
-namespace TraficPoliceLib
+namespace TrafficPoliceLib
 {
     /// <summary>
     /// Класс для проверки VIN номера и получения информации о нём

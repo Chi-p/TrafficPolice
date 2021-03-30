@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static TraficPoliceLib.Dictionaries;
+using static TrafficPoliceLib.Dictionaries;
 
-namespace TraficPoliceLib
+namespace TrafficPoliceLib
 {
     /// <summary>
     /// Класс для проверки регистрационного знака и получения информации о нём

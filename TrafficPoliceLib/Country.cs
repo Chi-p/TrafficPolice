@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using static TraficPoliceLib.GeoArea;
+using static TrafficPoliceLib.GeoArea;
 
-namespace TraficPoliceLib
+namespace TrafficPoliceLib
 {
     class Country
     {
